@@ -1,11 +1,12 @@
 import AppLayout from '@/layouts/app-layout';
 import { BreadcrumbItem } from '@/types';
+import { Task } from '@/types/task';
 import { Head } from '@inertiajs/react';
 
 type ShowProps = {
-    initial?: { message?: string; id?: number };
+    task: Task;
 };
-const Show = ({ initial }: ShowProps) => {
+const Show = ({ task }: ShowProps) => {
     const breadcrumbs: BreadcrumbItem[] = [
         {
             title: 'Tasks',
@@ -13,7 +14,7 @@ const Show = ({ initial }: ShowProps) => {
         },
         {
             title: 'Show Task',
-            href: `/tasks/${initial?.id}`,
+            href: `/tasks/${task?.id}`,
         },
     ];
     return (
@@ -21,12 +22,10 @@ const Show = ({ initial }: ShowProps) => {
             <Head title="Tasks" />
             <div className="mx-auto max-w-5xl p-6">
                 <div className="flex items-center justify-between">
-                    <h1 className="text-xl font-semibold">
-                        Task - {initial?.id}
-                    </h1>
+                    <h1 className="text-xl font-semibold">Task - {task?.id}</h1>
                 </div>
                 <p className="mt-4 text-sm opacity-80">
-                    {initial?.message ?? 'Tasks Show'}
+                    {task?.title ?? 'Tasks Show'}
                 </p>
             </div>
         </AppLayout>
